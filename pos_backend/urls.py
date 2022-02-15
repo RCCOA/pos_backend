@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView, TokenVerifyView
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,5 +26,7 @@ urlpatterns = [
     path('',include('api.urls')),
     path('admin/', admin.site.urls),
     path('login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
