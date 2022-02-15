@@ -44,7 +44,7 @@ class Pedido(models.Model):
                                db_column='usu_id',verbose_name='Usuario')
     mesa_id = models.ForeignKey(Mesa,to_field='mesa_id',on_delete=models.RESTRICT,
                                 db_column='mesa_id',verbose_name='Mesa')
-
+    
 class PedidoPlato(models.Model):
     pedidoplato_id = models.AutoField(primary_key=True)
     pedidoplato_cant = models.IntegerField(default=1)
@@ -54,4 +54,5 @@ class PedidoPlato(models.Model):
     pedido_id = models.ForeignKey(Pedido,related_name='pedidoplatos',to_field='pedido_id',
                                   on_delete=models.RESTRICT,db_column='pedido_id',
                                   verbose_name='Pedido')
+    
     

@@ -1,11 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 # Create your views here.
 from .models import *
 from .serializers import *
 
 from rest_framework.permissions import IsAuthenticated
-
 
 class IndexView(APIView):
     
@@ -61,7 +61,7 @@ class PedidoView(APIView):
         return Response(context)
     
     def post(self,request):
-        serPedido = PedidoSerializerPOST(data=request.data)
+        serPedido  = PedidoSerializerPOST(data=request.data)
         serPedido.is_valid(raise_exception=True)
         serPedido.save()
         
@@ -69,7 +69,7 @@ class PedidoView(APIView):
             'ok':True,
             'content':serPedido.data
         })
-
+        
 class PlatoView(APIView):
     
     def get(self,request):
